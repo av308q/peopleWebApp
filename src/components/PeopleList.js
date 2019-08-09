@@ -1,40 +1,30 @@
 import React from "react";
-import styled from "styled-components";
+import {Table} from "./componentStyles";
 
-const PeopleListWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	border: 1px solid black;
-	margin: 20px;
-	padding: 10px 5px 20px 5px;
-`;
 
-const PersonWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-`;
 
 const PeopleList = ({ list }) => {
 	return (
-		<PeopleListWrapper>
-			<PersonWrapper>
-				<h2>Name</h2>
-				<h2>Email Adress</h2>
-				<h2> Job Title</h2>
-			</PersonWrapper>
-			{list.map(person => {
-				return (
-					<PersonWrapper key={person.id}>
-						<div> {person.display_name}</div>
-						<div> {person.email_address}</div>
-						<div> {person.title}</div>
-					</PersonWrapper>
-				);
-			})}
-			;
-		</PeopleListWrapper>
-	);
+    <div>
+      <h1> People List </h1>
+      <Table>
+        <tr>
+          <th>Name</th>
+          <th>Email Address</th>
+          <th>Job Title</th>
+        </tr>
+        {list.map(person => {
+          return (
+            <tr key={person.id}>
+              <td>{person.display_name}</td>
+              <td>{person.email_address}</td>
+              <td>{person.title}</td>
+            </tr>
+          );
+        })}
+      </Table>
+    </div>
+  );
 };
 
 export default PeopleList;
