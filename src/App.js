@@ -5,16 +5,28 @@ import PeopleList from "./components/PeopleList";
 import axios from "axios";
 
 function App() {
-	const [people, setPeople] = useState([]); // initailize people using hooks 'useState'
+  const [people, setPeople] = useState([]);// initailize people using hooks 'useState'
+  const [emails, setEmails] = useState([]); 
 
 	const fetchPeople = async () => {
 		const response = await axios.get("/api");
 		setPeople(response.data.data);
-		console.log(people);
-	};
+		
+  };
+  
+  const arrayOfEmails = listOfPeople => {
+    return listOfPeople.map(person => {
+      return person.email_address;
+    });
+  };
+
+  
+  
 
 	useEffect(() => {
-		fetchPeople(people);
+    fetchPeople(people);
+    setEmails(arrayOfEmails(people))
+    console.log(emails)
 	}, [people]);
 	return (
 		<div className="App">
